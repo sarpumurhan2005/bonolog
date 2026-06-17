@@ -79,7 +79,7 @@ const HomePage = () => {
       <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-            <source src="/lojistik-video.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dvq0uolfb/video/upload/v1781691601/lojistik-video-small_suj47w.mp4" type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-black/60"></div>
         </div>
