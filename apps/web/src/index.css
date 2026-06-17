@@ -123,4 +123,17 @@
   .text-shadow-lg {
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+  @keyframes marquee-rtl {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee-rtl 40s linear infinite;
+  }
+
+  .marquee-track:hover .animate-marquee {
+    animation-play-state: paused;
+  }
 }

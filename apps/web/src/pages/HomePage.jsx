@@ -45,10 +45,22 @@ const HomePage = () => {
   ];
 
   const partners = [
-    'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop',
-    'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=100&fit=crop',
-    'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=200&h=100&fit=crop',
-    'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=200&h=100&fit=crop',
+    { name: 'Esse', logo: '/logos/esse.png' },
+    { name: 'Dijitsu', logo: '/logos/dijitsu.png' },
+    { name: 'CVS', logo: '/logos/cvs.png' },
+    { name: 'Boğaziçi Bilgisayar', logo: '/logos/bogazici-bilgisayar.png' },
+    { name: 'Art Sistem', logo: '/logos/art-sistem.png' },
+    { name: 'Pamuk Telekomünikasyon', logo: '/logos/pamuk-telekomunikasyon.png' },
+    { name: 'Hızlı Kartuş', logo: '/logos/hizli-kartus.png' },
+    { name: 'Truva Bilgisayar', logo: '/logos/truva-bilgisayar.png' },
+    { name: 'Doruk Ecza', logo: '/logos/doruk-ecza.png' },
+    { name: 'Smyrna Pet Food', logo: '/logos/smyrna-pet-food.png' },
+    { name: 'Bionell Pet Food', logo: '/logos/bionell-pet-food.png' },
+    { name: 'FSP Bilgisayar', logo: '/logos/fsp-bilgisayar.png' },
+    { name: 'Pativerse', logo: '/logos/pativerse.png' },
+    { name: 'Özler Plastik', logo: '/logos/ozler-plastik.png' },
+    { name: 'Remitek', logo: '/logos/remitek.png' },
+    { name: 'Asset', logo: '/logos/asset.png' },
   ];
 
   const fulfillmentCards = [
@@ -228,26 +240,32 @@ const HomePage = () => {
             <h2 className="heading-section mb-4">{t('partners_title')}</h2>
             <p className="text-lg text-muted-foreground">{t('partners_desc')}</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {partners.map((partner, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="overflow-hidden border-none shadow-sm hover:shadow-md transition-shadow">
-                  <CardContent className="p-8 flex items-center justify-center bg-muted/50 rounded-xl">
-                    <img
-                      src={partner}
-                      alt={`Partner ${index + 1}`}
-                      className="w-full h-16 object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
-                    />
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="marquee-track relative w-full overflow-hidden">
+            <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent"></div>
+            <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent"></div>
+            <div className="animate-marquee flex w-max gap-6">
+              {[...partners, ...partners].map((partner, index) => (
+                <div
+                  key={index}
+                  className="group flex h-24 w-52 flex-shrink-0 items-center justify-center rounded-2xl border border-border bg-muted/40 px-6 transition-all duration-300 hover:scale-110 hover:border-primary/40 hover:bg-background hover:shadow-[0_0_25px_rgba(220,38,38,0.35)]"
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-h-14 max-w-full object-contain grayscale opacity-70 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling.style.display = 'block';
+                    }}
+                  />
+                  <span
+                    className="hidden text-center text-lg font-semibold text-muted-foreground transition-colors duration-300 group-hover:text-primary"
+                  >
+                    {partner.name}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
