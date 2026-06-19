@@ -8,9 +8,10 @@ import { Card, CardContent } from '@/components/ui/card';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import ServiceCard from '@/components/ServiceCard.jsx';
+import IntegrationsSection from '@/components/IntegrationsSection.jsx';
 import StatCard from '@/components/StatCard.jsx';
 import ValueCard from '@/components/ValueCard.jsx';
-import { Clock, Shield, Globe2, TrendingUp, Users, Award, ArrowRight } from 'lucide-react';
+import { Clock, Shield, Globe2, TrendingUp, Users, Award, ArrowRight, Store, Send, PackageCheck, ScanLine, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
@@ -76,6 +77,21 @@ const HomePage = () => {
       image: '/genel.jpg',
       path: '/fulfillment/b2b',
     },
+  ];
+
+  const fulfillmentStats = [
+    { num: t('fstat1_num'), label: t('fstat1_label'), desc: t('fstat1_desc') },
+    { num: t('fstat2_num'), label: t('fstat2_label'), desc: t('fstat2_desc') },
+    { num: t('fstat3_num'), label: t('fstat3_label'), desc: t('fstat3_desc') },
+    { num: t('fstat4_num'), label: t('fstat4_label'), desc: t('fstat4_desc') },
+  ];
+
+  const howSteps = [
+    { icon: Store, title: t('step1_title'), desc: t('step1_desc') },
+    { icon: Send, title: t('step2_title'), desc: t('step2_desc') },
+    { icon: PackageCheck, title: t('step3_title'), desc: t('step3_desc') },
+    { icon: ScanLine, title: t('step4_title'), desc: t('step4_desc') },
+    { icon: Sparkles, title: t('step5_title'), desc: t('step5_desc') },
   ];
 
   return (
@@ -174,6 +190,71 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Fulfillment Stats + How it works */}
+      <section className="section-spacing bg-slate-950 text-white">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+            {fulfillmentStats.map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-3xl lg:text-4xl font-black text-primary mb-2">{stat.num}</p>
+                <p className="font-semibold mb-1">{stat.label}</p>
+                <p className="text-slate-400 text-sm leading-relaxed">{stat.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="text-center mb-14">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-3xl lg:text-4xl font-black mb-3"
+            >
+              {t('howitworks_title')}
+            </motion.h2>
+            <p className="text-slate-400 text-lg">{t('howitworks_sub')}</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-14">
+            {howSteps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  viewport={{ once: true }}
+                  className="text-center flex flex-col items-center"
+                >
+                  <div className="w-16 h-16 mb-5 rounded-2xl bg-primary/15 flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-bold mb-2">{step.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="flex justify-center">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 transition-all hover:scale-105 active:scale-95">
+              <Link to="/contact">{t('cta_btn')}</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations */}
+      <IntegrationsSection />
 
       {/* Services */}
       <section className="section-spacing bg-muted/30">

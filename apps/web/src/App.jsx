@@ -14,6 +14,7 @@ import ContactPage from '@/pages/ContactPage.jsx';
 import LoginPage from '@/pages/LoginPage.jsx';
 import AdminDashboard from '@/pages/AdminDashboard.jsx';
 import FulfillmentB2CPage from '@/pages/FulfillmentB2CPage.jsx';
+import FloatingContact from '@/components/FloatingContact.jsx';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             }
           />
         </Routes>
+        <FloatingContact />
         <Toaster />
       </AuthProvider>
     </Router>

@@ -5,8 +5,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
+import IntegrationsSection from '@/components/IntegrationsSection.jsx';
 import { useTranslation } from 'react-i18next';
-import { Settings, Link2, RotateCcw, Truck, PackageX, Eye, Plus, Minus } from 'lucide-react';
+import { Settings, Link2, RotateCcw, Truck, PackageX, Eye, Plus, Minus, Store, Send, PackageCheck, ScanLine, Sparkles } from 'lucide-react';
 
 const FulfillmentB2CPage = () => {
   const { t } = useTranslation();
@@ -27,6 +28,14 @@ const FulfillmentB2CPage = () => {
     { title: t('b2c_feat3_title'), desc: t('b2c_feat3_desc') },
     { title: t('b2c_feat4_title'), desc: t('b2c_feat4_desc') },
     { title: t('b2c_feat5_title'), desc: t('b2c_feat5_desc') },
+  ];
+
+  const howSteps = [
+    { icon: Store, title: t('step1_title'), desc: t('step1_desc') },
+    { icon: Send, title: t('step2_title'), desc: t('step2_desc') },
+    { icon: PackageCheck, title: t('step3_title'), desc: t('step3_desc') },
+    { icon: ScanLine, title: t('step4_title'), desc: t('step4_desc') },
+    { icon: Sparkles, title: t('step5_title'), desc: t('step5_desc') },
   ];
 
   return (
@@ -218,6 +227,50 @@ const FulfillmentB2CPage = () => {
           </div>
         </div>
       </section>
+
+      {/* How it works */}
+      <section className="py-24 bg-slate-950 text-white">
+        <div className="container-custom">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl lg:text-4xl font-black mb-3">{t('howitworks_title')}</h2>
+            <p className="text-slate-400 text-lg">{t('howitworks_sub')}</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-14">
+            {howSteps.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  viewport={{ once: true }}
+                  className="text-center flex flex-col items-center"
+                >
+                  <div className="w-16 h-16 mb-5 rounded-2xl bg-sky-500/15 flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-sky-400" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-bold mb-2">{step.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="flex justify-center">
+            <Link
+              to="/contact"
+              className="inline-block bg-sky-400 hover:bg-sky-500 text-white font-bold text-sm px-12 py-4 uppercase tracking-widest transition-colors duration-200"
+            >
+              {t('b2c_get_offer')}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Integrations */}
+      <IntegrationsSection />
 
       <Footer />
     </>
