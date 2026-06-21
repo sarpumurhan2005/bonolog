@@ -55,7 +55,7 @@
   "fstat3_num": "99.8%",
   "fstat3_label": "Order Accuracy Rate",
   "fstat3_desc": "Right order, right customer, right time — at 99.8%.",
-  "fstat4_num": "100+",
+  "fstat4_num": "10",
   "fstat4_label": "Countries Reached",
   "fstat4_desc": "Global fulfillment infrastructure for cross-border shipping.",
 

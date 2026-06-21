@@ -55,7 +55,7 @@
   "fstat3_num": "99,8 %",
   "fstat3_label": "Bestellgenauigkeit",
   "fstat3_desc": "Richtige Bestellung, richtiger Kunde, richtige Zeit – zu 99,8 %.",
-  "fstat4_num": "100+",
+  "fstat4_num": "10",
   "fstat4_label": "Erreichte Länder",
   "fstat4_desc": "Globale Fulfillment-Infrastruktur für grenzüberschreitenden Versand.",
 
