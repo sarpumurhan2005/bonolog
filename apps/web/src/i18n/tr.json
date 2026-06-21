@@ -55,7 +55,7 @@
   "fstat3_num": "%99,8",
   "fstat3_label": "Sipariş Doğruluk Oranı",
   "fstat3_desc": "Doğru sipariş, doğru müşteri, doğru zamanda — %99,8 oranında.",
-  "fstat4_num": "10",
+  "fstat4_num": "+10",
   "fstat4_label": "Ülkeye Ulaşım",
   "fstat4_desc": "Sınırları aşan gönderimler için global fulfillment altyapısı.",
 
