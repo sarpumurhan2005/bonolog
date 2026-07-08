@@ -13,28 +13,28 @@ const Header = () => {
 
   const fulfillmentCategories = [
     {
-      title: t('menu_cat1'),
+      title: t('menu_fcat1'),
+      items: [
+        { label: t('menu_f_b2c'), path: '/fulfillment/b2c' },
+        { label: t('menu_f_b2b'), path: '/fulfillment/b2b' },
+        { label: t('menu_f_dep'), path: '/fulfillment/depolama' },
+        { label: t('menu_f_ret'), path: '/fulfillment/iade' },
+      ],
+    },
+    {
+      title: t('menu_fcat2'),
       items: [
         { label: t('svc_kara_title'), path: '/services/kara' },
         { label: t('svc_deniz_title'), path: '/services/deniz' },
         { label: t('svc_hava_title'), path: '/services/hava' },
-        { label: t('svc_demiryolu_title'), path: '/services/demiryolu' },
-      ],
-    },
-    {
-      title: t('menu_cat2'),
-      items: [
-        { label: t('svc_depolama_title'), path: '/services/depolama' },
-        { label: t('svc_gumrukleme_title'), path: '/services/gumrukleme' },
         { label: t('svc_express_title'), path: '/services/express' },
-        { label: t('svc_parsiyel_title'), path: '/services/parsiyel' },
       ],
     },
     {
-      title: t('menu_cat3'),
+      title: t('menu_fcat3'),
       items: [
-        { label: t('svc_intermodal_title'), path: '/services/intermodal' },
-        { label: t('svc_transit_title'), path: '/services/transit' },
+        { label: t('svc_gumrukleme_title'), path: '/services/gumrukleme' },
+        { label: t('svc_parsiyel_title'), path: '/services/parsiyel' },
         { label: t('svc_fuar_title'), path: '/services/fuar' },
         { label: t('svc_ozel_title'), path: '/services/ozel-proje' },
       ],
@@ -109,24 +109,34 @@ const Header = () => {
                 closeTimerRef.current = setTimeout(() => setFulfillmentOpen(false), 200);
               }}
             >
-              <button
+              <Link
+                to="/fulfillment"
+                onClick={() => setFulfillmentOpen(false)}
                 className={`flex items-center gap-1 font-medium transition-colors relative ${
-                  location.pathname.startsWith('/services')
+                  (location.pathname.startsWith('/services') || location.pathname.startsWith('/fulfillment'))
                     ? 'text-primary'
                     : 'text-foreground hover:text-primary'
                 }`}
               >
                 Fulfillment
                 <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${fulfillmentOpen ? 'rotate-180' : ''}`} />
-                {location.pathname.startsWith('/services') && (
+                {(location.pathname.startsWith('/services') || location.pathname.startsWith('/fulfillment')) && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary"></span>
                 )}
-              </button>
+              </Link>
 
               {fulfillmentOpen && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[700px] bg-background border border-border rounded-xl shadow-2xl p-8 z-50">
                   <div className="mb-6 pb-4 border-b border-border">
-                    <h2 className="text-2xl font-bold">FULFILLMENT</h2>
+                    <h2 className="text-2xl font-bold">
+                      <Link
+                        to="/fulfillment"
+                        onClick={() => setFulfillmentOpen(false)}
+                        className="hover:text-primary transition-colors"
+                      >
+                        FULFILLMENT
+                      </Link>
+                    </h2>
                     <p className="text-sm text-muted-foreground mt-1">
                       {t('menu_fulfillment_desc')}
                     </p>
@@ -154,7 +164,14 @@ const Header = () => {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 pt-4 border-t border-border">
+                  <div className="mt-6 pt-4 border-t border-border flex items-center justify-between gap-4">
+                    <Link
+                      to="/fulfillment"
+                      onClick={() => setFulfillmentOpen(false)}
+                      className="text-sm font-semibold text-primary hover:underline flex items-center gap-1"
+                    >
+                      {t('menu_explore_fulfillment')} <ArrowRight className="w-4 h-4" />
+                    </Link>
                     <Link
                       to="/services"
                       onClick={() => setFulfillmentOpen(false)}
@@ -229,6 +246,14 @@ const Header = () => {
                   </button>
                   {mobileFulfillmentOpen && (
                     <div className="mt-4 space-y-4 pl-2">
+                      <Link
+                        to="/fulfillment"
+                        onClick={() => setMobileOpen(false)}
+                        className="flex items-center gap-2 text-sm font-semibold text-primary"
+                      >
+                        <ArrowRight className="w-3 h-3" />
+                        {t('menu_explore_fulfillment')}
+                      </Link>
                       {fulfillmentCategories.map((cat) => (
                         <div key={cat.title}>
                           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">{cat.title}</p>

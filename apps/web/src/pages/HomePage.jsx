@@ -188,6 +188,16 @@ const HomePage = () => {
               </motion.div>
             ))}
           </div>
+
+          <div className="mt-12 flex justify-center">
+            <Link
+              to="/fulfillment"
+              className="inline-flex items-center gap-2 text-primary font-semibold text-lg hover:gap-3 transition-all"
+            >
+              {t('home_fulfillment_all')}
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -14,6 +14,10 @@ import ContactPage from '@/pages/ContactPage.jsx';
 import LoginPage from '@/pages/LoginPage.jsx';
 import AdminDashboard from '@/pages/AdminDashboard.jsx';
 import FulfillmentB2CPage from '@/pages/FulfillmentB2CPage.jsx';
+import FulfillmentOverviewPage from '@/pages/FulfillmentOverviewPage.jsx';
+import FulfillmentB2BPage from '@/pages/FulfillmentB2BPage.jsx';
+import FulfillmentWarehousePage from '@/pages/FulfillmentWarehousePage.jsx';
+import FulfillmentReturnsPage from '@/pages/FulfillmentReturnsPage.jsx';
 import FloatingContact from '@/components/FloatingContact.jsx';
 
 function App() {
@@ -28,8 +32,11 @@ function App() {
           <Route path="/corporate" element={<CorporatePage />} />
           <Route path="/human-resources" element={<HumanResourcesPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/fulfillment" element={<FulfillmentOverviewPage />} />
           <Route path="/fulfillment/b2c" element={<FulfillmentB2CPage />} />
-          <Route path="/fulfillment/b2b" element={<FulfillmentB2CPage />} />
+          <Route path="/fulfillment/b2b" element={<FulfillmentB2BPage />} />
+          <Route path="/fulfillment/depolama" element={<FulfillmentWarehousePage />} />
+          <Route path="/fulfillment/iade" element={<FulfillmentReturnsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route
             path="/admin"

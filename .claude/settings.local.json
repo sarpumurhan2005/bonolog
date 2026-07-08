@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "mcp__Claude_Preview__preview_start",
-      "mcp__Claude_in_Chrome__tabs_context_mcp"
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('/Users/sarpumurhan/Desktop/BonologWebsite/horizons-export-7756e4ec-8995-46b2-b3f9-5bbe674c132d/apps/web/src/i18n/tr.json','utf8'\\)\\); console.log\\('OK'\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(npm run *)"
     ]
   }
 }
