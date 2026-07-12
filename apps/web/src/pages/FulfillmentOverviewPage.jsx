@@ -12,7 +12,7 @@ import {
   Warehouse, PackageCheck, Truck, RotateCcw, Plug, Globe2,
   Store, Send, ScanLine, Sparkles,
   Wallet, TrendingUp, Eye, ShieldCheck, Users, Handshake,
-  Plus, Minus,
+  Plus, Minus, CheckCircle2, ArrowRight,
 } from 'lucide-react';
 
 const FulfillmentOverviewPage = () => {
@@ -86,24 +86,33 @@ const FulfillmentOverviewPage = () => {
       <Header />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-slate-50 via-white to-red-50 py-24 lg:py-32 pt-32">
-        <div className="container-custom">
+      <section className="relative overflow-hidden bg-slate-950 text-white py-24 lg:py-32 pt-32">
+        <div className="pointer-events-none absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-primary/25 blur-3xl animate-blob" />
+        <div className="pointer-events-none absolute top-1/3 -right-48 w-[600px] h-[600px] rounded-full bg-rose-500/15 blur-3xl animate-blob animation-delay-4000" />
+        <div className="pointer-events-none absolute inset-0 bg-grid-dark" />
+
+        <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl lg:text-5xl font-black leading-tight mb-6 text-slate-900">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-6">
+                <Sparkles className="w-4 h-4" />
+                {t('nav_fulfillment')}
+              </span>
+
+              <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-primary">
                 {t('fo_hero_title')}
               </h1>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
                 {t('fo_hero_desc')}
               </p>
               <ul className="space-y-3 mb-10">
                 {[t('fo_hero_b1'), t('fo_hero_b2'), t('fo_hero_b3')].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-slate-700 font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                  <li key={item} className="flex items-center gap-3 text-slate-200 font-medium">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -111,13 +120,13 @@ const FulfillmentOverviewPage = () => {
               <div className="flex flex-wrap gap-4">
                 <Link
                   to="/contact"
-                  className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-10 py-4 uppercase tracking-widest transition-colors duration-200"
+                  className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-10 py-4 uppercase tracking-widest rounded-lg shadow-[0_0_40px_rgba(220,38,60,0.45)] hover:shadow-[0_0_60px_rgba(220,38,60,0.6)] hover:scale-105 transition-all duration-300"
                 >
                   {t('fo_hero_cta1')}
                 </Link>
                 <a
                   href="#nasil-calisir"
-                  className="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-sm px-10 py-4 uppercase tracking-widest transition-colors duration-200"
+                  className="inline-block border border-white/25 text-white hover:bg-white/10 font-bold text-sm px-10 py-4 uppercase tracking-widest rounded-lg backdrop-blur transition-colors duration-200"
                 >
                   {t('fo_hero_cta2')}
                 </a>
@@ -130,20 +139,40 @@ const FulfillmentOverviewPage = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="relative"
             >
-              <img
-                src="/depolama.jpg"
-                alt={t('fo_hero_title')}
-                className="w-full h-[480px] object-cover rounded-2xl shadow-2xl"
-              />
+              <div className="rounded-3xl p-[2px] bg-gradient-to-br from-primary/70 via-rose-400/30 to-transparent">
+                <img
+                  src="/depolama.jpg"
+                  alt={t('fo_hero_title')}
+                  className="w-full h-[480px] object-cover rounded-[calc(1.5rem-2px)]"
+                />
+              </div>
+
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute -left-4 lg:-left-10 top-10 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-5 py-4 shadow-2xl"
+              >
+                <p className="text-2xl font-black text-gradient-red">{t('fstat3_num')}</p>
+                <p className="text-xs text-slate-200 font-medium">{t('fstat3_label')}</p>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="absolute -right-4 lg:-right-8 bottom-12 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-5 py-4 shadow-2xl"
+              >
+                <p className="text-2xl font-black text-gradient-red">{t('fstat2_num')}</p>
+                <p className="text-xs text-slate-200 font-medium">{t('fstat2_label')}</p>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-slate-900 py-16">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="relative bg-slate-950 pb-20 pt-4 border-b border-white/5">
+        <div className="container-custom relative z-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
             {stats.map((stat, i) => (
               <motion.div
                 key={i}
@@ -151,8 +180,9 @@ const FulfillmentOverviewPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
+                className="rounded-2xl bg-white/5 border border-white/10 backdrop-blur p-6 hover:border-primary/40 hover:bg-white/[0.08] transition-colors duration-300"
               >
-                <p className="text-3xl lg:text-4xl font-black text-primary mb-2">{stat.num}</p>
+                <p className="text-3xl lg:text-4xl font-black text-gradient-red mb-2">{stat.num}</p>
                 <p className="text-white font-semibold mb-1">{stat.label}</p>
                 <p className="text-slate-400 text-sm leading-relaxed">{stat.desc}</p>
               </motion.div>
@@ -185,10 +215,10 @@ const FulfillmentOverviewPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   viewport={{ once: true }}
-                  className="rounded-2xl border border-border p-8 hover:shadow-lg transition-shadow duration-300"
+                  className="group rounded-2xl border border-border p-8 hover:border-primary/40 hover:-translate-y-1.5 hover:shadow-[0_18px_50px_-12px_rgba(220,38,60,0.3)] transition-all duration-300"
                 >
-                  <div className="w-14 h-14 mb-6 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  <div className="w-14 h-14 mb-6 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-rose-600 group-hover:scale-110 transition-all duration-300">
+                    <Icon className="w-7 h-7 text-primary group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-3">{svc.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{svc.desc}</p>
@@ -222,15 +252,21 @@ const FulfillmentOverviewPage = () => {
                 viewport={{ once: true }}
                 className="flex flex-col"
               >
-                <Link to={card.path} className="group relative block overflow-hidden rounded-2xl aspect-[4/3]">
+                <Link
+                  to={card.path}
+                  className="group relative block overflow-hidden rounded-2xl aspect-[4/3] ring-1 ring-border hover:ring-2 hover:ring-primary/60 hover:shadow-[0_20px_60px_-15px_rgba(220,38,60,0.4)] transition-all duration-300"
+                >
                   <img
                     src={card.image}
                     alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-teal-700/60 group-hover:bg-teal-700/70 transition-colors duration-300" />
-                  <div className="absolute inset-0 flex items-end p-8">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/40 to-transparent" />
+                  <div className="absolute inset-0 flex items-end justify-between p-8 gap-4">
                     <h3 className="text-white text-2xl font-bold tracking-wide">{card.title}</h3>
+                    <span className="flex-shrink-0 w-11 h-11 rounded-full bg-primary flex items-center justify-center opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                      <ArrowRight className="w-5 h-5 text-white" />
+                    </span>
                   </div>
                 </Link>
                 <div className="pt-6 px-1 flex flex-col gap-4">
@@ -238,7 +274,7 @@ const FulfillmentOverviewPage = () => {
                   <div className="flex justify-center">
                     <Link
                       to={card.path}
-                      className="border-2 border-primary text-primary font-semibold text-sm px-8 py-3 uppercase tracking-widest hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                      className="border-2 border-primary text-primary font-semibold text-sm px-8 py-3 uppercase tracking-widest rounded-lg hover:bg-primary hover:text-primary-foreground hover:shadow-[0_0_30px_rgba(220,38,60,0.35)] transition-all duration-300"
                     >
                       {t('detail_btn')}
                     </Link>
@@ -251,9 +287,12 @@ const FulfillmentOverviewPage = () => {
       </section>
 
       {/* How it works */}
-      <section id="nasil-calisir" className="bg-slate-950 text-white py-24">
-        <div className="container-custom">
-          <div className="text-center mb-14">
+      <section id="nasil-calisir" className="relative overflow-hidden bg-slate-950 text-white py-24">
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute inset-0 bg-grid-dark" />
+
+        <div className="container-custom relative z-10">
+          <div className="text-center mb-16">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -263,10 +302,10 @@ const FulfillmentOverviewPage = () => {
             >
               {t('howitworks_title')}
             </motion.h2>
-            <p className="text-slate-400 text-lg">{t('howitworks_sub')}</p>
+            <p className="text-gradient-red text-lg font-bold uppercase tracking-widest">{t('howitworks_sub')}</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-14">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-16">
             {howSteps.map((step, i) => {
               const Icon = step.icon;
               return (
@@ -276,10 +315,15 @@ const FulfillmentOverviewPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   viewport={{ once: true }}
-                  className="text-center flex flex-col items-center"
+                  className="text-center flex flex-col items-center relative"
                 >
-                  <div className="w-16 h-16 mb-5 rounded-2xl bg-primary/15 flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-primary" strokeWidth={1.5} />
+                  <div className="relative mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-rose-600 flex items-center justify-center shadow-[0_0_30px_rgba(220,38,60,0.4)]">
+                      <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+                    </div>
+                    <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white text-slate-950 text-xs font-black flex items-center justify-center">
+                      {i + 1}
+                    </span>
                   </div>
                   <h3 className="font-bold mb-2">{step.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
@@ -289,7 +333,7 @@ const FulfillmentOverviewPage = () => {
           </div>
 
           <div className="flex justify-center">
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 transition-all hover:scale-105 active:scale-95">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 rounded-xl shadow-[0_0_40px_rgba(220,38,60,0.4)] transition-all hover:scale-105 active:scale-95">
               <Link to="/contact">{t('cta_btn')}</Link>
             </Button>
           </div>
@@ -319,10 +363,10 @@ const FulfillmentOverviewPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   viewport={{ once: true }}
-                  className="rounded-2xl border border-border p-8 hover:shadow-lg transition-shadow duration-300"
+                  className="group rounded-2xl border border-border p-8 hover:border-primary/40 hover:-translate-y-1.5 hover:shadow-[0_18px_50px_-12px_rgba(220,38,60,0.3)] transition-all duration-300"
                 >
-                  <div className="w-14 h-14 mb-6 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                  <div className="w-14 h-14 mb-6 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-rose-600 group-hover:scale-110 transition-all duration-300">
+                    <Icon className="w-7 h-7 text-primary group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
@@ -349,14 +393,19 @@ const FulfillmentOverviewPage = () => {
             <h2 className="heading-section mb-4">{t('fo_faq_title')}</h2>
           </motion.div>
 
-          <div className="max-w-3xl mx-auto divide-y divide-border">
+          <div className="max-w-3xl mx-auto space-y-4">
             {faqs.map((faq, i) => (
-              <div key={i} className="py-5">
+              <div
+                key={i}
+                className={`rounded-2xl border bg-background px-6 py-5 transition-all duration-300 ${
+                  openIdx === i ? 'border-primary/50 shadow-[0_10px_40px_-15px_rgba(220,38,60,0.35)]' : 'border-border'
+                }`}
+              >
                 <button
                   onClick={() => setOpenIdx(openIdx === i ? -1 : i)}
                   className="w-full flex items-center justify-between gap-4 text-left group"
                 >
-                  <span className={`font-bold text-lg transition-colors ${openIdx === i ? 'text-slate-900' : 'text-slate-700 group-hover:text-slate-900'}`}>
+                  <span className={`font-bold text-lg transition-colors ${openIdx === i ? 'text-primary' : 'text-slate-700 group-hover:text-slate-900'}`}>
                     {faq.q}
                   </span>
                   {openIdx === i
@@ -380,9 +429,11 @@ const FulfillmentOverviewPage = () => {
       </section>
 
       {/* CTA */}
-      <section className="section-spacing bg-gradient-to-br from-primary/10 to-accent/20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+      <section className="relative overflow-hidden bg-slate-950 text-white py-24">
+        <div className="pointer-events-none absolute -top-32 right-0 w-[500px] h-[500px] rounded-full bg-primary/20 blur-3xl animate-blob" />
+        <div className="pointer-events-none absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-rose-500/15 blur-3xl animate-blob animation-delay-4000" />
+        <div className="pointer-events-none absolute inset-0 bg-grid-dark" />
+
         <div className="container-custom text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -390,9 +441,11 @@ const FulfillmentOverviewPage = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-section mb-6">{t('fo_cta_title')}</h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{t('fo_cta_desc')}</p>
-            <Button asChild size="lg" className="bg-primary text-primary-foreground text-lg px-12 py-7 transition-all hover:scale-105 active:scale-95 shadow-lg">
+            <h2 className="text-3xl lg:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-primary">
+              {t('fo_cta_title')}
+            </h2>
+            <p className="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">{t('fo_cta_desc')}</p>
+            <Button asChild size="lg" className="bg-primary text-primary-foreground text-lg px-14 py-7 rounded-xl shadow-[0_0_50px_rgba(220,38,60,0.5)] transition-all hover:scale-105 active:scale-95">
               <Link to="/contact">{t('cta_btn')}</Link>
             </Button>
           </motion.div>
