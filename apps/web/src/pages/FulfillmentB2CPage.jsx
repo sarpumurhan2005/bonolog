@@ -7,7 +7,7 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import IntegrationsSection from '@/components/IntegrationsSection.jsx';
 import { useTranslation } from 'react-i18next';
-import { Settings, Link2, RotateCcw, Truck, PackageX, Eye, Plus, Minus, Store, Send, PackageCheck, ScanLine, Sparkles } from 'lucide-react';
+import { Settings, Link2, RotateCcw, Truck, PackageX, Eye, Plus, Minus, Store, Send, PackageCheck, ScanLine, Sparkles, Crown, TrendingUp } from 'lucide-react';
 
 const FulfillmentB2CPage = () => {
   const { t } = useTranslation();
@@ -28,6 +28,12 @@ const FulfillmentB2CPage = () => {
     { title: t('b2c_feat3_title'), desc: t('b2c_feat3_desc') },
     { title: t('b2c_feat4_title'), desc: t('b2c_feat4_desc') },
     { title: t('b2c_feat5_title'), desc: t('b2c_feat5_desc') },
+  ];
+
+  const whoCards = [
+    { icon: Store, title: t('b2c_who1_title'), desc: t('b2c_who1_desc') },
+    { icon: Crown, title: t('b2c_who2_title'), desc: t('b2c_who2_desc') },
+    { icon: TrendingUp, title: t('b2c_who3_title'), desc: t('b2c_who3_desc') },
   ];
 
   const howSteps = [
@@ -228,6 +234,43 @@ const FulfillmentB2CPage = () => {
         </div>
       </section>
 
+      {/* Who is it for */}
+      <section className="bg-slate-50 py-24">
+        <div className="container-custom">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-3xl lg:text-4xl font-black text-slate-900 text-center mb-16"
+          >
+            {t('b2c_who_title')}
+          </motion.h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {whoCards.map((card, i) => {
+              const Icon = card.icon;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-2xl border border-slate-200 p-8"
+                >
+                  <div className="w-14 h-14 mb-6 rounded-xl bg-sky-100 flex items-center justify-center">
+                    <Icon className="w-7 h-7 text-sky-500" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-bold text-slate-900 text-lg mb-3">{card.title}</h3>
+                  <p className="text-slate-500 text-sm leading-relaxed">{card.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="py-24 bg-slate-950 text-white">
         <div className="container-custom">
@@ -271,6 +314,31 @@ const FulfillmentB2CPage = () => {
 
       {/* Integrations */}
       <IntegrationsSection />
+
+      {/* Closing CTA */}
+      <section className="bg-gradient-to-br from-sky-100 via-blue-50 to-slate-100 py-20 text-center">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4">
+              {t('b2c_cta_title')}
+            </h2>
+            <p className="text-slate-600 text-lg mb-10 max-w-2xl mx-auto">
+              {t('b2c_cta_desc')}
+            </p>
+            <Link
+              to="/contact"
+              className="inline-block bg-sky-400 hover:bg-sky-500 text-white font-bold text-sm px-12 py-4 uppercase tracking-widest transition-colors duration-200"
+            >
+              {t('b2c_get_offer')}
+            </Link>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </>
