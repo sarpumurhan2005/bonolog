@@ -8,7 +8,7 @@ import Header from '@/components/Header.jsx';
 import Footer from '@/components/Footer.jsx';
 import IntegrationsSection from '@/components/IntegrationsSection.jsx';
 import { useTranslation } from 'react-i18next';
-import { PackageOpen, SearchCheck, Sparkles, ArchiveRestore, BarChart3, TrendingUp, Heart, Eye } from 'lucide-react';
+import { PackageOpen, SearchCheck, Sparkles, ArchiveRestore, BarChart3, TrendingUp, Heart, Eye, CheckCircle2 } from 'lucide-react';
 
 const FulfillmentReturnsPage = () => {
   const { t } = useTranslation();
@@ -37,31 +37,40 @@ const FulfillmentReturnsPage = () => {
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-50 via-white to-slate-100 py-24 lg:py-32 pt-32">
-        <div className="container-custom">
+      <section className="relative overflow-hidden bg-slate-950 text-white py-24 lg:py-32 pt-32">
+        <div className="pointer-events-none absolute -top-40 -left-40 w-[520px] h-[520px] rounded-full bg-primary/25 blur-3xl animate-blob" />
+        <div className="pointer-events-none absolute top-1/3 -right-48 w-[600px] h-[600px] rounded-full bg-rose-500/15 blur-3xl animate-blob animation-delay-4000" />
+        <div className="pointer-events-none absolute inset-0 bg-grid-dark" />
+
+        <div className="container-custom relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
             >
-              <h1 className="text-4xl lg:text-5xl font-black leading-tight mb-6 text-slate-900">
+              <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-sm font-semibold text-primary mb-6">
+                <Sparkles className="w-4 h-4" />
+                {t('nav_fulfillment')}
+              </span>
+
+              <h1 className="text-4xl lg:text-6xl font-black leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-primary">
                 {t('fret_hero_title')}
               </h1>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              <p className="text-lg text-slate-300 mb-8 leading-relaxed">
                 {t('fret_hero_desc')}
               </p>
               <ul className="space-y-3 mb-10">
                 {[t('fret_b1'), t('fret_b2'), t('fret_b3')].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-primary font-medium">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
+                  <li key={item} className="flex items-center gap-3 text-slate-200 font-medium">
+                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
               <Link
                 to="/contact"
-                className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-10 py-4 uppercase tracking-widest transition-colors duration-200"
+                className="inline-block bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm px-10 py-4 uppercase tracking-widest rounded-lg shadow-[0_0_40px_rgba(220,38,60,0.45)] hover:shadow-[0_0_60px_rgba(220,38,60,0.6)] hover:scale-105 transition-all duration-300"
               >
                 {t('b2c_get_offer')}
               </Link>
@@ -73,19 +82,42 @@ const FulfillmentReturnsPage = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="relative"
             >
-              <img
-                src="/express.jpg"
-                alt={t('fret_title')}
-                className="w-full h-[480px] object-cover rounded-2xl shadow-2xl"
-              />
+              <div className="rounded-3xl p-[2px] bg-gradient-to-br from-primary/70 via-rose-400/30 to-transparent">
+                <img
+                  src="/express.jpg"
+                  alt={t('fret_title')}
+                  className="w-full h-[480px] object-cover rounded-[calc(1.5rem-2px)]"
+                />
+              </div>
+
+              <motion.div
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+                className="absolute -left-4 lg:-left-10 top-10 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-5 py-4 shadow-2xl"
+              >
+                <p className="text-2xl font-black text-gradient-red">{t('fstat3_num')}</p>
+                <p className="text-xs text-slate-200 font-medium">{t('fstat3_label')}</p>
+              </motion.div>
+
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+                className="absolute -right-4 lg:-right-8 bottom-12 rounded-2xl bg-white/10 border border-white/20 backdrop-blur-md px-5 py-4 shadow-2xl"
+              >
+                <p className="text-2xl font-black text-gradient-red">{t('fstat2_num')}</p>
+                <p className="text-xs text-slate-200 font-medium">{t('fstat2_label')}</p>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="bg-slate-950 text-white py-24">
-        <div className="container-custom">
+      <section className="relative overflow-hidden bg-slate-950 text-white py-24">
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute inset-0 bg-grid-dark" />
+
+        <div className="container-custom relative z-10">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -108,10 +140,14 @@ const FulfillmentReturnsPage = () => {
                   viewport={{ once: true }}
                   className="text-center flex flex-col items-center"
                 >
-                  <div className="w-12 h-12 mb-4 rounded-full bg-primary text-white font-black flex items-center justify-center text-lg">
-                    {i + 1}
+                  <div className="relative mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-rose-600 flex items-center justify-center shadow-[0_0_30px_rgba(220,38,60,0.4)]">
+                      <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+                    </div>
+                    <span className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-white text-slate-950 text-xs font-black flex items-center justify-center">
+                      {i + 1}
+                    </span>
                   </div>
-                  <Icon className="w-6 h-6 text-primary mb-3" strokeWidth={1.5} />
                   <h3 className="font-bold mb-2">{step.title}</h3>
                   <p className="text-slate-400 text-sm leading-relaxed">{step.desc}</p>
                 </motion.div>
@@ -144,10 +180,10 @@ const FulfillmentReturnsPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   viewport={{ once: true }}
-                  className="rounded-2xl border border-slate-200 p-8"
+                  className="group rounded-2xl border border-slate-200 p-8 hover:border-primary/40 hover:-translate-y-1.5 hover:shadow-[0_18px_50px_-12px_rgba(220,38,60,0.3)] transition-all duration-300"
                 >
-                  <div className="w-12 h-12 mb-5 rounded-xl bg-primary/10 flex items-center justify-center">
-                    <Icon className="w-6 h-6 text-primary" strokeWidth={1.5} />
+                  <div className="w-12 h-12 mb-5 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-gradient-to-br group-hover:from-primary group-hover:to-rose-600 group-hover:scale-110 transition-all duration-300">
+                    <Icon className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-lg font-bold text-slate-900 mb-3">{benefit.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed">{benefit.desc}</p>
@@ -162,9 +198,11 @@ const FulfillmentReturnsPage = () => {
       <IntegrationsSection />
 
       {/* Closing CTA */}
-      <section className="section-spacing bg-gradient-to-br from-primary/10 to-accent/20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+      <section className="relative overflow-hidden bg-slate-950 text-white py-24">
+        <div className="pointer-events-none absolute -top-32 right-0 w-[500px] h-[500px] rounded-full bg-primary/20 blur-3xl animate-blob" />
+        <div className="pointer-events-none absolute -bottom-40 -left-32 w-[500px] h-[500px] rounded-full bg-rose-500/15 blur-3xl animate-blob animation-delay-4000" />
+        <div className="pointer-events-none absolute inset-0 bg-grid-dark" />
+
         <div className="container-custom text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -172,9 +210,11 @@ const FulfillmentReturnsPage = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-section mb-6">{t('fret_cta_title')}</h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{t('fret_cta_desc')}</p>
-            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 transition-all hover:scale-105 active:scale-95 shadow-lg">
+            <h2 className="text-3xl lg:text-5xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-primary">
+              {t('fret_cta_title')}
+            </h2>
+            <p className="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">{t('fret_cta_desc')}</p>
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-12 py-7 rounded-xl shadow-[0_0_50px_rgba(220,38,60,0.5)] transition-all hover:scale-105 active:scale-95">
               <Link to="/contact">{t('cta_btn')}</Link>
             </Button>
           </motion.div>
